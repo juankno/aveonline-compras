@@ -16,7 +16,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
-    protected $namespaceApiV1 = 'App\Http\ControllersApi\V1';
+    /**
+     * This namespace is applied to your api controller routes.
+     *
+     * In addition, it is set as the URL generator's root apiNamespaceV1.
+     *
+     * @var string
+     */
+    protected $apiNamespaceV1 = 'App\Http\Controllers\Api\V1';
 
     /**
      * The path to the "home" route for your application.
@@ -81,7 +88,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::prefix('api/v1')
             ->middleware('api')
-            ->namespace($this->namespaceApiV1)
+            ->namespace($this->apiNamespaceV1)
             ->group(base_path('routes/api/v1/api.php'));
     }
 }

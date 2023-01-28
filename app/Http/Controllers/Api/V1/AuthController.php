@@ -69,7 +69,7 @@ class AuthController extends Controller
     {
         UserResource::withoutWrapping();
 
-        $user = auth()->user()->load('empresaObj', 'roles', 'municipio:id,nombre');
+        $user = auth()->user();
 
         return response()->json([
             'user' => new UserResource($user),
