@@ -38,4 +38,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * Users' roles
+     *
+     * @var array
+     */
+    public const ROLES = [
+        'admin'     => 1,
+        'user'    => 2,
+        'customer' => 3,
+    ];
 }

@@ -43,6 +43,7 @@ class AuthController extends Controller
 
             $user = User::create([
                 'name' => $request->name,
+                'role_id' => User::ROLES['customer'],
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
