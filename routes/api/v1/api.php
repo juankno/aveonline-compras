@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Resources\Api\V1\RoleResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,6 @@ Route::post('register', 'AuthController@register');
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('user', 'AuthController@user');
     Route::post('logout', 'AuthController@logout');
+
+    Route::apiResource('roles', 'RoleController');
 });

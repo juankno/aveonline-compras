@@ -1,13 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\StoreRoleRequest;
+use App\Http\Requests\Api\V1\UpdateRoleRequest;
+use App\Http\Resources\Api\V1\RoleResource;
+use App\Http\Resources\Api\V1\RoleResourceCollection;
 use App\Models\Role;
+use App\Repositories\interfaces\RoleRepositoryInterface;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+
+    private $roleRepository;
+
+    public function __construct(RoleRepositoryInterface $roleRepository)
+    {
+        $this->roleRepository = $roleRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +29,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = $this->roleRepository->allRoles();
+
+        return new RoleResourceCollection($roles);
     }
 
     /**
@@ -34,9 +50,22 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        //
+        try {
+            $this->roleRepository->storeRole($request->validated());
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Rol creado correctamente'
+            ], 201);
+        } catch (\Throwable $th) {
+
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -45,9 +74,11 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show($role)
     {
-        //
+        $role = $this->roleRepository->findRole($role);
+
+        return new RoleResource($role);
     }
 
     /**
@@ -68,9 +99,21 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(UpdateRoleRequest $request, $role)
     {
-        //
+        try {
+            $this->roleRepository->updateRole($request->validated(), $role);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Rol actualizado correctamente'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -79,8 +122,17 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($role)
     {
-        //
+        try {
+            $this->roleRepository->destroyRole($role);
+
+            return response()->noContent();
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 }
