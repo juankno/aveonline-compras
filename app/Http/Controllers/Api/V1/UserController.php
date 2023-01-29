@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\V1\StoreCustomerRequest;
-use App\Http\Requests\Api\V1\UpdateCustomerRequest;
-use App\Http\Resources\Api\V1\CustomerResource;
-use App\Http\Resources\Api\V1\CustomerResourceCollection;
-use App\Repositories\interfaces\CustomerRepositoryInterface;
+use App\Http\Requests\Api\V1\StoreUserRequest;
+use App\Http\Requests\Api\V1\UpdateUserRequest;
+use App\Http\Resources\Api\V1\UserResource;
+use App\Http\Resources\Api\V1\UserResourceCollection;
+use App\Repositories\interfaces\UserRepositoryInterface;
 
-class CustomerController extends Controller
+class UserController extends Controller
 {
 
-    private $customerRepository;
+    private $userRepository;
 
-    public function __construct(CustomerRepositoryInterface $customerRepository)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
-        $this->customerRepository = $customerRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -26,12 +26,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = $this->customerRepository->allCustomers();
+        $users = $this->userRepository->allUsers();
 
-        return new CustomerResourceCollection($customers);
+        return new UserResourceCollection($users);
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -39,14 +37,14 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCustomerRequest $request)
+    public function store(StoreUserRequest $request)
     {
         try {
-            $this->customerRepository->storeCustomer($request->validated());
+            $this->userRepository->storeUser($request->validated());
 
             return response()->json([
                 'success' => true,
-                'message' => "Cliente creado correctamente",
+                'message' => 'Usuario creado correctamente'
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
@@ -59,34 +57,32 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($customer)
+    public function show($user)
     {
-        $customer = $this->customerRepository->findCustomer($customer);
+        $user = $this->userRepository->findUser($user);
 
-        return new CustomerResource($customer);
+        return new UserResource($user);
     }
-
-
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCustomerRequest $request, $customer)
+    public function update(UpdateUserRequest $request, $user)
     {
         try {
-            $this->customerRepository->updateCustomer($request->validated(), $customer);
+            $this->userRepository->updateUser($request->validated(), $user);
 
             return response()->json([
                 'success' => true,
-                'message' => "Cliente actualizado correctamente",
-            ]);
+                'message' => 'Usuario actualizado correctamente'
+            ], 201);
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
@@ -98,13 +94,13 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($customer)
+    public function destroy($user)
     {
         try {
-            $customer = $this->customerRepository->destroyCustomer($customer);
+            $this->userRepository->destroyUser($user);
 
             return response()->noContent();
         } catch (\Throwable $th) {
