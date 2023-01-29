@@ -12,4 +12,9 @@ class Product extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
 }
