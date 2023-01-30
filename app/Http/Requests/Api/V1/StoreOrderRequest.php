@@ -25,6 +25,7 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             'products' => 'required|array',
+            'quantities' => 'required|array',
         ];
     }
 }
