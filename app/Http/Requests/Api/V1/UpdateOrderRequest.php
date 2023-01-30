@@ -25,6 +25,7 @@ class UpdateOrderRequest extends FormRequest
     {
         return [
             'products' => 'required|array',
+            'quantities' => 'required|array',
         ];
     }
 }

@@ -32,7 +32,12 @@ class OrderRepository implements OrderRepositoryInterface
         $data['quantity_products'] = count($data['products']) ?? 0;
         $order = Order::create($data);
 
-        $order->products()->sync($data['products']);
+        $productsWithQuantities = [];
+        foreach ($data['products'] as $key => $product) {
+            $productsWithQuantities[$product] = ['quantity' => $data['quantities'][$key] ?? 0];
+        }
+
+        $order->products()->sync($productsWithQuantities);
 
         return $order;
     }
@@ -46,7 +51,13 @@ class OrderRepository implements OrderRepositoryInterface
     {
         $order = $this->findOrder($id);
         $data['quantity_products'] = count($data['products']) ?? 0;
-        $order->products()->sync($data['products']);
+
+        $productsWithQuantities = [];
+        foreach ($data['products'] as $key => $product) {
+            $productsWithQuantities[$product] = ['quantity' => $data['quantities'][$key] ?? 0];
+        }
+
+        $order->products()->sync($productsWithQuantities);
         $order->update($data);
 
         return $order;

@@ -33,13 +33,13 @@ Luego inicie su servidor:
 php artisan serve
 ```
 
-A continuación, configure su base de datos y use:
+A continuación cree o configure su base de datos como aveonline_compras y use:
 
 ```
 php artisan migrate
 ```
 
-Si desea insertar los datos de prueba en la base de datos utilice:
+Insertae los datos de prueba en la base de datos, utilice:
 
 ```
 php artisan db:seed
