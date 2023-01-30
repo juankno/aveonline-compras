@@ -39,10 +39,16 @@ A continuación cree o configure su base de datos como aveonline_compras y use:
 php artisan migrate
 ```
 
-Insertae los datos de prueba en la base de datos, utilice:
+Inserte los datos de prueba en la base de datos, utilice:
 
 ```
 php artisan db:seed
+```
+
+Para consumir la API puede utilizar postman y importar el archivo que se encuentra en el directorio raiz del proyecto:
+
+```
+aveonline compras.postman_collection.json
 ```
 
 _Si necesita más información sobre laravel sanctum puede leer la documentación([Laravel Sanctum]https://laravel.com/docs/7.x/sanctum#main-content))_
