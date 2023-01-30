@@ -40,10 +40,11 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         try {
-            $this->userRepository->storeUser($request->validated());
+            $user = $this->userRepository->storeUser($request->validated());
 
             return response()->json([
                 'success' => true,
+                'user' => $user,
                 'message' => 'Usuario creado correctamente'
             ], 201);
         } catch (\Throwable $th) {
