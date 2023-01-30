@@ -17,7 +17,6 @@ class CreateOrderProductTable extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained();
             $table->foreignId('product_id')->constrained();
-            $table->unsignedBigInteger('quantity')->default(0);
             $table->timestamps();
         });
     }
