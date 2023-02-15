@@ -20,7 +20,7 @@ class OrderSeeder extends Seeder
 
             $order = Order::create([
                 'customer_id' => $customer->id,
-                'quantity_products' => count($products)
+                'quantity_products' => count($products),
             ]);
 
             $productsWithQuantity = [];

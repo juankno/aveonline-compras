@@ -11,7 +11,6 @@ use App\Repositories\interfaces\ProductRepositoryInterface;
 
 class ProductController extends Controller
 {
-
     private $productRepository;
 
     public function __construct(ProductRepositoryInterface $productRepository)
@@ -31,8 +30,6 @@ class ProductController extends Controller
         return new ProductResourceCollection($products);
     }
 
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -51,7 +48,7 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -68,7 +65,6 @@ class ProductController extends Controller
 
         return new ProductResource($product);
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -90,7 +86,7 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -110,7 +106,7 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }

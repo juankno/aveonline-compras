@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Resources\Api\V1\RoleResource;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*

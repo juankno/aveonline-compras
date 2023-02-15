@@ -9,18 +9,15 @@ use App\Http\Resources\Api\V1\RoleResource;
 use App\Http\Resources\Api\V1\RoleResourceCollection;
 use App\Models\Role;
 use App\Repositories\interfaces\RoleRepositoryInterface;
-use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-
     private $roleRepository;
 
     public function __construct(RoleRepositoryInterface $roleRepository)
     {
         $this->roleRepository = $roleRepository;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -57,13 +54,12 @@ class RoleController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Rol creado correctamente'
+                'message' => 'Rol creado correctamente',
             ], 201);
         } catch (\Throwable $th) {
-
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -106,12 +102,12 @@ class RoleController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Rol actualizado correctamente'
+                'message' => 'Rol actualizado correctamente',
             ]);
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -131,7 +127,7 @@ class RoleController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }

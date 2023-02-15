@@ -16,6 +16,7 @@ class CustomerRepository implements CustomerRepositoryInterface
     {
         isset($data['password']) ? $data['password'] = bcrypt($data['password']) : '';
         $data['role_id'] = User::ROLES['customer'];
+
         return User::create($data);
     }
 

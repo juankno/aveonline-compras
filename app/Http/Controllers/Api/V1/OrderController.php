@@ -11,7 +11,6 @@ use App\Repositories\interfaces\OrderRepositoryInterface;
 
 class OrderController extends Controller
 {
-
     private $orderRepository;
 
     public function __construct(OrderRepositoryInterface $orderRepository)
@@ -31,8 +30,6 @@ class OrderController extends Controller
         return new OrderResourceCollection($orders);
     }
 
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -46,12 +43,12 @@ class OrderController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => "Orden creada correctamente",
+                'message' => 'Orden creada correctamente',
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -69,12 +66,11 @@ class OrderController extends Controller
         return new OrderResource($order);
     }
 
-
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $order
+     * @param  int  $order
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateOrderRequest $request, $order)
@@ -84,12 +80,12 @@ class OrderController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => "Orden actualizada correctamente",
+                'message' => 'Orden actualizada correctamente',
             ]);
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -97,7 +93,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $order
+     * @param  int  $order
      * @return \Illuminate\Http\Response
      */
     public function destroy($order)
@@ -109,7 +105,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }

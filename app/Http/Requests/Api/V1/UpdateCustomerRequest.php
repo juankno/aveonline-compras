@@ -25,7 +25,7 @@ class UpdateCustomerRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|string|email|unique:users,email,' . $this->customer,
+            'email' => 'required|string|email|unique:users,email,'.$this->customer,
             'password' => 'sometimes|required|string|min:8|confirmed',
         ];
     }
