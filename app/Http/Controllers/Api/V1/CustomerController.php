@@ -11,7 +11,6 @@ use App\Repositories\interfaces\CustomerRepositoryInterface;
 
 class CustomerController extends Controller
 {
-
     private $customerRepository;
 
     public function __construct(CustomerRepositoryInterface $customerRepository)
@@ -31,8 +30,6 @@ class CustomerController extends Controller
         return new CustomerResourceCollection($customers);
     }
 
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -46,12 +43,12 @@ class CustomerController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => "Cliente creado correctamente",
+                'message' => 'Cliente creado correctamente',
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -69,8 +66,6 @@ class CustomerController extends Controller
         return new CustomerResource($customer);
     }
 
-
-
     /**
      * Update the specified resource in storage.
      *
@@ -85,12 +80,12 @@ class CustomerController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => "Cliente actualizado correctamente",
+                'message' => 'Cliente actualizado correctamente',
             ]);
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -110,7 +105,7 @@ class CustomerController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }

@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
+use App\Repositories\CustomerRepository;
 use App\Repositories\interfaces\CustomerRepositoryInterface;
+use App\Repositories\interfaces\OrderRepositoryInterface;
 use App\Repositories\interfaces\ProductRepositoryInterface;
 use App\Repositories\interfaces\RoleRepositoryInterface;
 use App\Repositories\interfaces\UserRepositoryInterface;
-use App\Repositories\CustomerRepository;
-use App\Repositories\interfaces\OrderRepositoryInterface;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\RoleRepository;

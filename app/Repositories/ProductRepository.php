@@ -21,6 +21,7 @@ class ProductRepository implements ProductRepositoryInterface
     public function storeProduct($data)
     {
         $data['user_id'] = auth()->id();
+
         return Product::create($data);
     }
 

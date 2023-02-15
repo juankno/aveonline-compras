@@ -15,6 +15,7 @@ class UserRepository implements UserRepositoryInterface
     public function storeUser($data)
     {
         isset($data['password']) ? $data['password'] = bcrypt($data['password']) : '';
+
         return User::create($data);
     }
 

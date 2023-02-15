@@ -11,7 +11,6 @@ use App\Repositories\interfaces\UserRepositoryInterface;
 
 class UserController extends Controller
 {
-
     private $userRepository;
 
     public function __construct(UserRepositoryInterface $userRepository)
@@ -45,12 +44,12 @@ class UserController extends Controller
             return response()->json([
                 'success' => true,
                 'user' => $user,
-                'message' => 'Usuario creado correctamente'
+                'message' => 'Usuario creado correctamente',
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -82,12 +81,12 @@ class UserController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Usuario actualizado correctamente'
+                'message' => 'Usuario actualizado correctamente',
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -107,7 +106,7 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => $th->getMessage()
+                'message' => $th->getMessage(),
             ]);
         }
     }
